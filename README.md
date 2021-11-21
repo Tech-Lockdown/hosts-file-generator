@@ -1,9 +1,9 @@
+# Hosts file generator
+Generate hosts file based on categories.
+
+*Source files curated from [nextdns.io](https://nextdns.io)*
+
 # nextdns/metadata
-
-This repository contains the data behind our Security, Privacy and Parental Control features.
-
-*To better route and answer all different types of requests, please read the following before creating an issue or PR.*
-
 ---
 
 ## Report a false positive (a domain being blocked that shouldn't)
