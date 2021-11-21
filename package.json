@@ -1,0 +1,23 @@
+{
+  "name": "hosts-file-generator",
+  "version": "1.0.0",
+  "description": "generate hosts file based on crowdsourced categories",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tech-Lockdown/hosts-file-generator.git"
+  },
+  "author": "Ben Bozzay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tech-Lockdown/hosts-file-generator/issues"
+  },
+  "homepage": "https://github.com/Tech-Lockdown/hosts-file-generator#readme",
+  "dependencies": {
+    "node-fetch": "^3.1.0"
+  },
+  "type": "module"
+}
