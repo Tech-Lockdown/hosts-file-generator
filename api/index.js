@@ -49,10 +49,14 @@ class Generator {
 		let json = await JSON.parse(file)
 		let sources = json.sources
 		for (let i = 0; i < sources.length; i++) {
-			console.log("fetching...", sources[i].url)
+			console.log("fetching...", sources[i])
 			let response = await fetch(sources[i].url);
 			let data = await response.text();
-			console.log("data", data)
+			//console.log("data", data)
+			if (sources[i].format !== "hosts") {
+				data = data.replace(/^(?!#)(?!\s*$).*/gm, "0.0.0.0 " + "$&")
+			}
+			//console.log(data)
 			await this.saveFile(fileName, data)
 		}
 
