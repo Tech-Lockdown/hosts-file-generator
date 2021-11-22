@@ -1,0 +1,8 @@
+0.0.0.0 ext-twitch.tv
+0.0.0.0 jtvnw.net
+0.0.0.0 ttvnw.net
+0.0.0.0 ttvnw.net
+0.0.0.0 twitch.map.fastly.net
+0.0.0.0 twitch.tv
+0.0.0.0 twitchcdn.net
+0.0.0.0 twitchsvc.net

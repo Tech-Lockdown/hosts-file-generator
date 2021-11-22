@@ -1,0 +1,6 @@
+0.0.0.0 disney-plus.net
+0.0.0.0 disneyplus.com
+0.0.0.0 disneyplus.disney.co.jp
+0.0.0.0 dssott.com
+0.0.0.0 dssott.com.c.footprint.net
+0.0.0.0 search-api-disney.bamgrid.com
