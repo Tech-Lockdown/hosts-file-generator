@@ -15,11 +15,11 @@ const BASE_DIR = path.resolve();
 
 class Generator {
 	constructor(options = {}) {
-		this.skip = ["exclusions", "protected-domains", "disguised-trackers"],
+		this.skip = ["exclusions", "protected-domains", "disguised-trackers", "gafam"],
 		this.options = {
 			overwrite: true,
 			format: "hosts",
-			skip: ["threat-intelligence-feeds", "cryptojacking"],
+			skip: ["threat-intelligence-feeds", "cryptojacking", "280blocker", "chef-koch-spotify"],
 			...options
 		}
 		this.cacheDir = path.resolve(BASE_DIR + "/cache")
@@ -31,7 +31,6 @@ class Generator {
 		return this.generateFiles(data.children)
 	}
 	async generateFiles(data) {
-			console.log("data", data)
 		for (const item of data) {
 			const targetDir = path.resolve(this.cacheDir + "/" + item.name)
 			//await !fs.exists(targetDir)??fs.mkdir()
@@ -39,7 +38,6 @@ class Generator {
 				await this.generateFiles(item.children)
 			}
 			if (item.hasOwnProperty("path")) {
-				console.log("PATH", item.path)
 				let srcContent = await this.getFileContent(path.resolve(this.dataPath + "/" + item.path))
 				if (srcContent) {
 					this.createFile(item.path, srcContent)
@@ -50,8 +48,8 @@ class Generator {
 	async getFileContent(itemPath) {
 		const extension = path.parse(itemPath).ext;
 		let src = readFileSync(itemPath, "utf8")
-		let content = "";
-		if (this.options.skip.includes(path.parse(itemPath).name)) {
+		let fileName = path.parse(itemPath).name;
+		if (this.skip.includes(fileName) || this.options.skip.includes(fileName)) {
 			console.log("Skipping....", itemPath)
 			return false
 		}
@@ -116,7 +114,6 @@ class Generator {
 
 	async mapDirectory(dir = this.dataDir, group = null) {
 		const dirents = await fs.readdir(dir, { withFileTypes: true });
-		console.log("dirs", dirents)
 		let items = [];
 		for (const dirent of dirents) {
 			const res = path.resolve(dir, dirent.name);
@@ -145,10 +142,9 @@ class Generator {
 
 }
 const generator = new Generator();
-//generator.generate();
-//generator.createHostsFile();
 (async function() {
-	let cache = await generator.start();
-	console.dir(cache)
+	await generator.start();
+	//generator.createHostsFile();
+	//console.dir(cache)
 }())
 //generator.fetchData();
