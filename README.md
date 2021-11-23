@@ -1,5 +1,12 @@
 # Hosts file generator
-Generate hosts file based on categories.
+Generate hosts blocklist file based on categories.
+
+
+Generate the files in the cache directory based on the contents of `./data`. This will fetch all APIs in json files and create files based on generator.options.format (default = hosts).
+`npm run generate:cache`
+
+Create a blocklist file containing all entries (that are not skipped) from the cache directory. Override generator.options.skip with file/folder names (do not include extensions) to customize the output.
+`npm run generate:blocklist`
 
 *Source files curated from [nextdns.io](https://nextdns.io)*
 

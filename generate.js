@@ -6,7 +6,7 @@ import fetch from "node-fetch";
 import fs from "fs/promises";
 import { existsSync, readFileSync, mkdirSync, writeFileSync } from 'fs';
 import path from "path";
-import { dataMap } from "./utils.js"
+import { dataMap, cacheMap } from "./utils.js"
 
 function replaceEachLine(data, replacementText = "0.0.0.0 ") {
 	return data.replace(/^(?!#)(?!\s*$).*/gm, replacementText + "$&")
@@ -15,16 +15,16 @@ const BASE_DIR = path.resolve();
 
 class Generator {
 	constructor(options = {}) {
-		this.skip = ["exclusions", "protected-domains", "disguised-trackers", "gafam"],
+		this.skip = ["analytics", "exclusions", "protected-domains", "disguised-trackers", "gafam"],
 		this.options = {
 			overwrite: true,
 			format: "hosts",
-			skip: ["threat-intelligence-feeds", "cryptojacking", "280blocker", "chef-koch-spotify"],
+			skip: ["threat-intelligence-feeds", "280blocker", "chef-koch-spotify"],
 			...options
 		}
 		this.cacheDir = path.resolve(BASE_DIR + "/cache")
 		this.dataPath = path.resolve(BASE_DIR + "/data")
-		this.cache = {};
+		this.blocklistCache = "";
 	}
 	async start() {
 		let data = await dataMap(this.dataPath)
@@ -35,7 +35,9 @@ class Generator {
 			const targetDir = path.resolve(this.cacheDir + "/" + item.name)
 			//await !fs.exists(targetDir)??fs.mkdir()
 			if (item.hasOwnProperty("children")) {
-				await this.generateFiles(item.children)
+				if (!this.skip.includes(item.name) && !this.options.skip.includes(item.name)) {
+					await this.generateFiles(item.children)
+				}
 			}
 			if (item.hasOwnProperty("path")) {
 				let srcContent = await this.getFileContent(path.resolve(this.dataPath + "/" + item.path))
@@ -112,39 +114,59 @@ class Generator {
 		fs.writeFile(`${relativePath}.txt`, data)
 	}
 
-	async mapDirectory(dir = this.dataDir, group = null) {
-		const dirents = await fs.readdir(dir, { withFileTypes: true });
-		let items = [];
-		for (const dirent of dirents) {
-			const res = path.resolve(dir, dirent.name);
-			//console.log(res)
-			if (dirent.isDirectory()) {
-				let files = await this.mapDirectory(res)
-				items.push(files)
-			} else {
-				items.push(res)
-			}
-		}
-		return items;
+	async getBlocklist() {
+		let cache = await cacheMap(this.cacheDir)
+		return this.concatFiles(cache.children, false)
 	}
-	async createHostsFile(selected) {
+
+	async createBlocklist() {
+		let cache = await cacheMap(this.cacheDir)
+		return this.concatFiles(cache.children)
+	}
+	async concatFiles(files, saveFile = true) {
 		let blocklistPath = path.resolve(`${path.resolve()}/blocklist`);
 		await fs.writeFile(blocklistPath, "");
-
-		let files = await this.mapDirectory(this.cacheDir)
-		files = files.flat();
 		for (const file of files) {
-			console.log("file", file)
-			let contents = await fs.readFile(file);
-			await fs.appendFile(blocklistPath, contents)
+			if (file.hasOwnProperty("children")) {
+				if (!this.options.skip.includes(file.name) && !this.skip.includes(file.name)) {
+					await this.concatFiles(file.children, saveFile)
+				}
+			}
+			if (file.hasOwnProperty("path")) {
+				// If not skipping the file
+				if (!this.options.skip.includes(file.name) && !this.skip.includes(file.name)) {
+					let contents = await fs.readFile(path.resolve(this.cacheDir + "/" + file.path))
+					if (saveFile) {
+						await fs.appendFile(blocklistPath, contents)
+					} else {
+						contents = contents.toString();
+						this.blocklistCache+=contents
+					}
+				}
+			}
+		}
+		if (!saveFile) {
+			return this.blocklistCache
 		}
 	}
 
 }
 const generator = new Generator();
 (async function() {
-	await generator.start();
+	//await generator.start();
+	const args = process.argv.slice(2)
+	console.log(args)
+	if (args.includes("--blocklist")) {
+		let files = await generator.createBlocklist();
+	}
+	if (args.includes("--getblocklist")) {
+		let blocklist = await generator.getBlocklist();
+		console.log(blocklist)
+	}
+	if (args.includes("--cache")) {
+		let files = await generator.start();
+		console.log(args)
+	}
 	//generator.createHostsFile();
-	//console.dir(cache)
 }())
 //generator.fetchData();

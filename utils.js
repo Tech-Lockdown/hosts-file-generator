@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 
-export const dataMap = async (dir) => {
+const dirMap = async (dir, baseDir = "./data") => {
 	const dirents = await fs.readdir(dir, { withFileTypes: true });
 	const groupName = path.basename(dir);
 	//console.log(groupName)
@@ -13,14 +13,22 @@ export const dataMap = async (dir) => {
 		const filePath = path.resolve(dir, dirent.name);
 		if (dirent.isDirectory()) {
 			console.log(filePath)
-			let subGroup = await dataMap(filePath)
+			let subGroup = await dirMap(filePath, baseDir)
 			group.children.push(subGroup)
 		} else {
 			group.children.push({
-				path: path.relative(path.resolve("./data"), filePath),
+				path: path.relative(path.resolve(baseDir), filePath),
 				name: path.parse(dirent.name).name
 			})
 		}
 	}
 	return group
+}
+
+export const dataMap = async (dir) => {
+	return dirMap(dir, "./data")
+}
+
+export const cacheMap = async (dir) => {
+	return dirMap(dir, "./cache")
 }
