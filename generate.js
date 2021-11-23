@@ -15,10 +15,11 @@ const BASE_DIR = path.resolve();
 
 class Generator {
 	constructor(options = {}) {
+		this.skip = ["exclusions", "protected-domains", "disguised-trackers"],
 		this.options = {
 			overwrite: true,
 			format: "hosts",
-			skip: ["exclusions", "protected-domains", "disguised-trackers"],
+			skip: ["threat-intelligence-feeds", "cryptojacking"],
 			...options
 		}
 		this.cacheDir = path.resolve(BASE_DIR + "/cache")
@@ -44,15 +45,16 @@ class Generator {
 					this.createFile(item.path, srcContent)
 				}
 			}
-			// if (path.extname(item.path) === "json") {
-			// 	console.log(item)
-			// }
 		}
 	}
 	async getFileContent(itemPath) {
 		const extension = path.parse(itemPath).ext;
 		let src = readFileSync(itemPath, "utf8")
 		let content = "";
+		if (this.options.skip.includes(path.parse(itemPath).name)) {
+			console.log("Skipping....", itemPath)
+			return false
+		}
 		if (extension === ".json") {
 			const js = JSON.parse(src)
 			if (!Array.isArray(js) && js.hasOwnProperty("sources")) {
