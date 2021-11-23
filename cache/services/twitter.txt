@@ -1,5 +1,0 @@
-0.0.0.0 ads-twitter.com
-0.0.0.0 t.co
-0.0.0.0 twimg.com
-0.0.0.0 twitter.com
-0.0.0.0 twttr.com

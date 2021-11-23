@@ -1,0 +1,7 @@
+# Blocked CNAME domains (and their subdomains) when enablind Security -> Block Parked Domains.
+
+0.0.0.0 parkingcrew.net
+0.0.0.0 sedoparking.com
+0.0.0.0 bodis.com
+0.0.0.0 comingsoon.namebright.com
+0.0.0.0 expired.namebright.com

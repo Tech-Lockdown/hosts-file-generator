@@ -1,2 +1,0 @@
-0.0.0.0 xbox.com
-0.0.0.0 xboxlive.xom

@@ -1,0 +1,421 @@
+#This blocklist tries to shorten down the original pihole-google list by keepin only the main domains in the list, making all the linked other domains hosted on those, be blocked as well.
+#Last updated: 18-01-2020
+
+#Google Analytics
+0.0.0.0 googleanalytics.com
+0.0.0.0 google-analytics.com
+
+#Google Tag Manager
+0.0.0.0 googletagmanager.com
+0.0.0.0 tagmanager.google.com
+0.0.0.0 www-googletagmanager.l.google.com
+
+#googletagservices.com
+0.0.0.0 googletagservices.com
+
+#Google Android
+0.0.0.0 android.com
+0.0.0.0 android-safebrowsing.google.com
+0.0.0.0 android.clients.google.com
+
+#Google DNS Servers
+0.0.0.0 8.8.8.8
+0.0.0.0 8.8.4.4
+0.0.0.0 2001:4860:4860::8888
+0.0.0.0 2001:4860:4860::8844
+0.0.0.0 dnsotls-ds.metric.gstatic.com
+
+#Google Domains
+0.0.0.0 google.ad
+0.0.0.0 google.ae
+0.0.0.0 google.com.ag
+0.0.0.0 google.al
+0.0.0.0 google.am
+0.0.0.0 google.bt
+0.0.0.0 google.co.ao
+0.0.0.0 google.cd
+0.0.0.0 google.cf
+0.0.0.0 google.cg
+0.0.0.0 google.ci
+0.0.0.0 google.co.ck
+0.0.0.0 google.cl
+0.0.0.0 google.cm
+0.0.0.0 google.cn
+0.0.0.0 google.com.co
+0.0.0.0 google.co.cr
+0.0.0.0 google.com.cu
+0.0.0.0 google.cv
+0.0.0.0 google.com.cy
+0.0.0.0 google.cz
+0.0.0.0 google.de
+0.0.0.0 google.dj
+0.0.0.0 google.dm
+0.0.0.0 google.com.do
+0.0.0.0 google.dz
+0.0.0.0 google.com.ec
+0.0.0.0 google.ee
+0.0.0.0 google.com.eg
+0.0.0.0 google.es
+0.0.0.0 google.com.et
+0.0.0.0 google.fi
+0.0.0.0 google.com.fj
+0.0.0.0 google.fm
+0.0.0.0 google.fr
+0.0.0.0 google.ga
+0.0.0.0 google.ge
+0.0.0.0 google.gg
+0.0.0.0 google.com.gh
+0.0.0.0 google.com.gi
+0.0.0.0 google.gl
+0.0.0.0 google.gm
+0.0.0.0 google.gp
+0.0.0.0 google.gr
+0.0.0.0 google.com.gt
+0.0.0.0 google.gy
+0.0.0.0 google.com.hk
+0.0.0.0 google.hn
+0.0.0.0 google.ht
+0.0.0.0 google.hr
+0.0.0.0 google.hu
+0.0.0.0 google.co.id
+0.0.0.0 google.ie
+0.0.0.0 google.co.il
+0.0.0.0 google.im
+0.0.0.0 google.co.in
+0.0.0.0 google.iq
+0.0.0.0 google.is
+0.0.0.0 google.it
+0.0.0.0 google.je
+0.0.0.0 google.com.jm
+0.0.0.0 google.jo
+0.0.0.0 google.co.jp
+0.0.0.0 google.co.ke
+0.0.0.0 google.co.kr
+0.0.0.0 google.com.kh
+0.0.0.0 google.ki
+0.0.0.0 google.kg
+0.0.0.0 google.com.kw
+0.0.0.0 google.kz
+0.0.0.0 google.la
+0.0.0.0 google.com.lb
+0.0.0.0 google.li
+0.0.0.0 google.lk
+0.0.0.0 google.co.ls
+0.0.0.0 google.lt
+0.0.0.0 google.lu
+0.0.0.0 google.lv
+0.0.0.0 google.com.ly
+0.0.0.0 google.co.ma
+0.0.0.0 google.md
+0.0.0.0 google.me
+0.0.0.0 google.mg
+0.0.0.0 google.mk
+0.0.0.0 google.ml
+0.0.0.0 google.mn
+0.0.0.0 google.ms
+0.0.0.0 google.com.mt
+0.0.0.0 google.mu
+0.0.0.0 google.mv
+0.0.0.0 google.com.mm
+0.0.0.0 google.mw
+0.0.0.0 google.com.mx
+0.0.0.0 google.com.my
+0.0.0.0 google.co.mz
+0.0.0.0 google.com.na
+0.0.0.0 google.com.nf
+0.0.0.0 google.com.ng
+0.0.0.0 google.com.ni
+0.0.0.0 google.ne
+0.0.0.0 google.nl
+0.0.0.0 google.no
+0.0.0.0 google.com.np
+0.0.0.0 google.nr
+0.0.0.0 google.nu
+0.0.0.0 google.co.nz
+0.0.0.0 google.com.om
+0.0.0.0 google.com.pa
+0.0.0.0 google.com.pe
+0.0.0.0 google.com.pg
+0.0.0.0 google.com.ph
+0.0.0.0 google.com.pk
+0.0.0.0 google.pl
+0.0.0.0 google.pn
+0.0.0.0 google.com.pr
+0.0.0.0 google.ps
+0.0.0.0 google.pt
+0.0.0.0 google.ro
+0.0.0.0 google.com.sa
+0.0.0.0 google.se
+0.0.0.0 google.si
+0.0.0.0 google.sn
+0.0.0.0 google.sr
+0.0.0.0 google.st
+0.0.0.0 google.tg
+0.0.0.0 google.tk
+0.0.0.0 google.tn
+0.0.0.0 google.tt
+0.0.0.0 google.com.ua
+0.0.0.0 google.com.uy
+0.0.0.0 google.co.ve
+0.0.0.0 google.rs
+0.0.0.0 google.co.zw
+0.0.0.0 google.com.py
+0.0.0.0 google.com.sb
+0.0.0.0 google.com.sg
+0.0.0.0 google.sk
+0.0.0.0 google.so
+0.0.0.0 google.com.sv
+0.0.0.0 google.co.th
+0.0.0.0 google.tl
+0.0.0.0 google.to
+0.0.0.0 google.com.tw
+0.0.0.0 google.co.ug
+0.0.0.0 google.co.uz
+0.0.0.0 google.vg
+0.0.0.0 google.vu
+0.0.0.0 google.co.za
+0.0.0.0 google.cat
+0.0.0.0 google.com.qa
+0.0.0.0 google.ru
+0.0.0.0 google.rw
+0.0.0.0 google.sc
+0.0.0.0 google.sh
+0.0.0.0 google.com.sl
+0.0.0.0 google.sm
+0.0.0.0 google.com
+0.0.0.0 google.ac
+0.0.0.0 google.td
+0.0.0.0 google.com.tj
+0.0.0.0 google.tm
+0.0.0.0 google.co.tz
+0.0.0.0 google.com.vc
+0.0.0.0 google.co.vi
+0.0.0.0 google.com.vn
+0.0.0.0 google.ws
+0.0.0.0 google.co.zm
+0.0.0.0 google.com.ar
+0.0.0.0 google.co.bw
+0.0.0.0 google.com.bz
+0.0.0.0 google.as
+0.0.0.0 google.at
+0.0.0.0 google.com.au
+0.0.0.0 google.az
+0.0.0.0 google.ba
+0.0.0.0 google.be
+0.0.0.0 google.bf
+0.0.0.0 google.bg
+0.0.0.0 google.bs
+0.0.0.0 google.by
+0.0.0.0 google.ca
+0.0.0.0 google.ch
+0.0.0.0 google.dk
+
+#google.org
+0.0.0.0 google.org
+
+#google.net
+0.0.0.0 google.net
+
+#Doubleclick
+0.0.0.0 doubleclick.com
+0.0.0.0 doubleclick.net
+
+#admob.com
+0.0.0.0 admob.com
+
+#Firebase
+0.0.0.0 firebaseio.com
+
+#Google Fonts
+#Already blocked because provided trough gstatic or their main domain
+
+#General Sites
+0.0.0.0 agoogleaday.com
+0.0.0.0 abc.xyz
+0.0.0.0 ai.google
+0.0.0.0 appspot.com
+0.0.0.0 autodraw.com
+0.0.0.0 beacons.gcp.gvt1.com
+0.0.0.0 beacons.gcp.gvt2.com
+0.0.0.0 blog.dialogflow.com
+0.0.0.0 blog.google
+0.0.0.0 blogsearch.google.com
+0.0.0.0 can.type.whatever.you.like.here.followed.by.svc-1.google.com
+#Yes, That one is real
+0.0.0.0 check.googlezip.net
+0.0.0.0 cobrasearch.com
+0.0.0.0 chromeexperiments.com
+0.0.0.0 fe0.google.com
+0.0.0.0 flutter.io
+0.0.0.0 ga-dev-tools.appspot.com
+0.0.0.0 gcp.gvt1.com
+0.0.0.0 gcp.gvt2.com
+0.0.0.0 getmdl.io
+0.0.0.0 googleadservices.com
+0.0.0.0 googleapis.com
+0.0.0.0 firebaseremoteconfig.googleapis.com
+0.0.0.0 googlepagecreator.com
+0.0.0.0 googlesciencefair.com
+0.0.0.0 googlezip.net
+0.0.0.0 grow.google
+0.0.0.0 gstatic.com
+0.0.0.0 gv.com
+0.0.0.0 library.gv.com
+0.0.0.0 gvt1.com
+0.0.0.0 gvt2.com
+0.0.0.0 rtb.pixeltracking.co
+0.0.0.0 ssl.gstatic.com
+0.0.0.0 web.dev
+0.0.0.0 deepmind.com
+0.0.0.0 dialogflow.com
+0.0.0.0 material.io
+0.0.0.0 sketchup.com
+0.0.0.0 thinkwithgoogle.com
+0.0.0.0 withgoogle.com
+0.0.0.0 madewithcode.com
+
+#Others -- Googleusercontent
+0.0.0.0 googleusercontent.com
+0.0.0.0 mailgoogleusercontent.com
+
+#Google Products
+0.0.0.0 gmail.com
+0.0.0.0 waze.com
+
+#googletranslate.com
+0.0.0.0 googletranslate.com
+
+#googlemail.com
+0.0.0.0 googlemail.com
+
+#Short Links
+0.0.0.0 g.co
+0.0.0.0 goo.gl
+0.0.0.0 youtu.be
+0.0.0.0 yt.be
+
+#Youtube
+0.0.0.0 youtube.be
+0.0.0.0 youtube.co.uk
+0.0.0.0 youtube.com
+0.0.0.0 youtube.de
+0.0.0.0 youtube.fr
+0.0.0.0 youtube.nl
+0.0.0.0 youtube.pl
+0.0.0.0 youtube-nocookie.com
+0.0.0.0 youtubeeducation.com
+
+#ytimg.com
+0.0.0.0 ytimg.com
+0.0.0.0 i.ytimg.com
+
+#youtubegaming.com
+0.0.0.0 youtubegaming.com
+
+#Others -- Googlevideo
+0.0.0.0 googlevideo.com
+
+#picasa.com
+0.0.0.0 picasa.com
+
+#Others -- Ampproject
+0.0.0.0 ampproject.org
+
+#googlemaps.com
+0.0.0.0 googlemaps.com
+
+#googlearth.com
+0.0.0.0 googlearth.com
+
+#googleearth.com
+0.0.0.0 googleearth.com
+
+#keyhole.com
+0.0.0.0 auth.keyhole.com
+
+#adsense.com
+0.0.0.0 adsense.com
+
+#adwords.com
+0.0.0.0 adwords.com
+
+#googl.com
+0.0.0.0 googl.com
+
+#googlr.com
+0.0.0.0 googlr.com
+
+#googil.com
+0.0.0.0 googil.com
+
+#googlee.com
+0.0.0.0 googlee.com
+
+#466453.com
+0.0.0.0 466453.com
+
+#foofle.com
+0.0.0.0 foofle.com
+
+#feedburner.com
+0.0.0.0 feedburner.com
+
+#googlecapital.com
+0.0.0.0 googlecapital.com
+0.0.0.0 capitalg.com
+
+#googlecommerce.com
+0.0.0.0 googlecommerce.com
+
+#googleapps.com
+0.0.0.0 googleapps.com
+
+#froogle.com
+0.0.0.0 froogle.com
+0.0.0.0 wml.froogle.com
+
+#googel.com
+0.0.0.0 googel.com
+
+#goolge.com
+0.0.0.0 goolge.com
+
+#gooogle.com
+0.0.0.0 gooogle.com
+
+#gogole.com
+0.0.0.0 gogole.com
+
+#ggoogle.com
+0.0.0.0 ggoogle.com
+
+#gogle.com
+0.0.0.0 gogle.com
+
+#like.com
+0.0.0.0 like.com
+
+#urchin.com
+0.0.0.0 urchin.com
+
+#chromium.org
+0.0.0.0 chromium.org
+
+#chrome.com
+0.0.0.0 chrome.com
+
+#chromebook.com
+0.0.0.0 chromebook.com
+
+#googlesource.com
+0.0.0.0 googlesource.com
+
+#googlescholar.com
+0.0.0.0 googlescholar.com
+0.0.0.0 ww.googlescholar.com
+
+#panoramio.com
+0.0.0.0 panoramio.com
+
+#page.link
+0.0.0.0 page.link

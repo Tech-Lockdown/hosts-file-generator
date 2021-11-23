@@ -1,5 +1,0 @@
-0.0.0.0 edge-skype-com.s-0001.s-msedge.net
-0.0.0.0 skype-edf.akadns.net
-0.0.0.0 skype.com
-0.0.0.0 skypeassets.com
-0.0.0.0 skypedata.akadns.net

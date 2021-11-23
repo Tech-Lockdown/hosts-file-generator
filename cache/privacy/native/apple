@@ -1,0 +1,10 @@
+0.0.0.0 metrics.apple.com
+0.0.0.0 securemetrics.apple.com
+0.0.0.0 supportmetrics.apple.com
+0.0.0.0 metrics.icloud.com
+0.0.0.0 metrics.mzstatic.com
+0.0.0.0 dzc-metrics.mzstatic.com
+0.0.0.0 books-analytics-events.news.apple-dns.net
+0.0.0.0 books-analytics-events.apple.com
+0.0.0.0 stocks-analytics-events.apple.com
+0.0.0.0 stocks-analytics-events.news.apple-dns.net

@@ -1,4 +1,0 @@
-0.0.0.0 vimeo-video.map.fastly.net
-0.0.0.0 vimeo.com
-0.0.0.0 vimeo.map.fastly.net
-0.0.0.0 vimeocdn.com
