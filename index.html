@@ -1,0 +1,36 @@
+<html>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.2.2/FileSaver.js"></script>
+<body>
+	<pre class="options"></pre>
+<script type="text/javascript">
+const options = async() => {
+
+	const optionsSelector = document.querySelector(".options")
+	const response = await fetch(`/api/hosts`);
+	optionsSelector.innerText = await response.text();
+}
+options();
+const download = async() => {
+	console.log("downloading")
+	try {
+		const response = await fetch(`/api/hosts`, {
+			method: "post",
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				skip: ["analytics", "security", "blocklists"]
+			})
+		})
+		const text = await response.text();
+		//console.log(text)
+		var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
+		saveAs(blob, "hello world.txt");	
+	} catch(err) {
+		console.log(err)
+	}
+}
+//download()
+</script>
+<button onclick="download()">Download</button>
+test
+</body>
+</html>

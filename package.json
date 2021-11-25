@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate:blocklist": "node generate.js --blocklist parentalcontrol,privacy,security",
     "generate:cache": "node generate.js --cache parentalcontrol,privacy,security",
-    "get:blocklist": "node generate.js --getblocklist parentalcontrol,privacy,security"
+    "get:blocklist": "node generate.js --getblocklist parentalcontrol,privacy,security",
+    "get:options": "node generate.js --options parentalcontrol,privacy,security"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,9 @@
   },
   "homepage": "https://github.com/Tech-Lockdown/hosts-file-generator#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "file-saver": "^2.0.5",
     "node-fetch": "^3.1.0"
   },
   "type": "module"

@@ -13,7 +13,7 @@ function replaceEachLine(data, replacementText = "0.0.0.0 ") {
 }
 const BASE_DIR = path.resolve();
 
-class Generator {
+export class Generator {
 	constructor(options = {}) {
 		this.skip = ["analytics", "exclusions", "protected-domains", "disguised-trackers", "gafam"],
 		this.options = {
@@ -149,6 +149,9 @@ class Generator {
 			return this.blocklistCache
 		}
 	}
+	async getCacheMap() {
+		return await cacheMap(this.cacheDir)
+	}
 
 }
 const generator = new Generator();
@@ -162,6 +165,10 @@ const generator = new Generator();
 	if (args.includes("--getblocklist")) {
 		let blocklist = await generator.getBlocklist();
 		console.log(blocklist)
+	}
+	if (args.includes("--options")) {
+		let cacheMap = await generator.getCacheMap();
+		console.log(cacheMap)
 	}
 	if (args.includes("--cache")) {
 		let files = await generator.start();
