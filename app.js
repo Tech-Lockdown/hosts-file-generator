@@ -7,7 +7,7 @@ import bodyParser from 'body-parser'
 // creating a instance of express
 const app = express();
 
-app.listen(5000, console.log('App Running On Port 5000!'))
+app.listen(process.env.PORT || 3000, console.log('App Running'))
 
 const BASE_DIR = path.resolve();
 app.get('/', async(req, res) => {
