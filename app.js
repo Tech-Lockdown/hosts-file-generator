@@ -15,7 +15,6 @@ var whitelist = [
 	'https://pmo-dev.netlify.app',
 	'https://pmo-stage.netlify.app'
 ]
-var whitelist = ['http://example1.com', 'http://example2.com']
 var corsOptionsDelegate = function (req, callback) {
   var corsOptions;
   if (whitelist.indexOf(req.header('Origin')) !== -1) {
