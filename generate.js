@@ -150,7 +150,9 @@ export class Generator {
 		}
 	}
 	async getCacheMap() {
-		return await cacheMap(this.cacheDir)
+		// Returns a map of the cache directory
+		// Skips any specified names
+		return await cacheMap(this.cacheDir, [...this.skip, ...this.options.skip])
 	}
 
 }
