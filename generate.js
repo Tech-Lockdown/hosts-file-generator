@@ -25,6 +25,7 @@ export class Generator {
 		}
 		this.cacheDir = path.resolve(BASE_DIR + "/cache")
 		this.dataPath = path.resolve(BASE_DIR + "/data")
+		this.blocklistPath = path.resolve(`${path.resolve()}/blocklist`);
 		this.blocklistCache = "";
 	}
 	async start() {
@@ -122,13 +123,14 @@ export class Generator {
 	}
 
 	async createBlocklist() {
-		let cache = await cacheMap(this.cacheDir)
-		return this.concatFiles(cache)
+		let cache = await cacheMap(this.cacheDir, [...this.skip, ...this.options.skip])
+		let blocklist = await this.concatFiles(cache.children, true)
+		await fs.appendFile(this.blocklistPath, "# Blocklist \r\n")
+		return blocklist
 	}
 	async concatFiles(files, saveFile = true) {
-		let blocklistPath = path.resolve(`${path.resolve()}/blocklist`);
 		if (saveFile) {
-			await fs.writeFile(blocklistPath, "# Start Blocklist");
+			await fs.writeFile(this.blocklistPath, "# Blocklist \r\n");
 		}
 		for (let i = 0; i < files.length; i++) {
 			let file = files[i]
@@ -142,7 +144,7 @@ export class Generator {
 				if (!this.shouldSkip(file.name, i)) {
 					let contents = await fs.readFile(path.resolve(this.cacheDir + "/" + file.path))
 					if (saveFile) {
-						await fs.appendFile(blocklistPath, contents)
+						await fs.appendFile(this.blocklistPath, contents)
 					} else {
 						contents = contents.toString();
 						this.blocklistCache+=contents
@@ -221,7 +223,17 @@ export class Generator {
 	const args = process.argv.slice(2)
 	console.log(args)
 	if (args.includes("--blocklist")) {
-		const generator = new Generator();
+		const generator = new Generator({
+			skip: [
+				'analytics',
+				'privacy',
+				'security',
+				'services',
+				'dating',
+				'gambling',
+				'social-networks'
+			]
+		});
 		let files = await generator.createBlocklist();
 	}
 	if (args.includes("--getblocklist")) {

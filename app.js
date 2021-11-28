@@ -31,6 +31,9 @@ const BASE_DIR = path.resolve();
 app.get('/', async(req, res) => {
 	res.sendFile(path.resolve(path.resolve() +'/index.html'))
 })
+app.get('/blocklist', async(req, res) => {
+	res.sendFile(path.resolve(path.resolve() +'/blocklist'))
+})
 
 app.use(bodyParser.json())
 
