@@ -36,7 +36,7 @@ export class Generator {
 			const targetDir = path.resolve(this.cacheDir + "/" + item.name)
 			//await !fs.exists(targetDir)??fs.mkdir()
 			if (item.hasOwnProperty("children")) {
-				if (!this.skip.includes(item.name) && !this.options.skip.includes(item.name)) {
+				if (!this.shouldSkip(item.name)) {
 					await this.generateFiles(item.children)
 				}
 			}
@@ -52,7 +52,7 @@ export class Generator {
 		const extension = path.parse(itemPath).ext;
 		let src = readFileSync(itemPath, "utf8")
 		let fileName = path.parse(itemPath).name;
-		if (this.skip.includes(fileName) || this.options.skip.includes(fileName)) {
+		if (this.shouldSkip(fileName)) {
 			console.log("Skipping....", itemPath)
 			return false
 		}
@@ -116,17 +116,20 @@ export class Generator {
 	}
 
 	async getBlocklist() {
-		let cache = await cacheMap(this.cacheDir)
+		let cache = await cacheMap(this.cacheDir, [...this.skip, ...this.options.skip])
+		console.log("cache", cache.children)
 		return this.concatFiles(cache.children, false)
 	}
 
 	async createBlocklist() {
 		let cache = await cacheMap(this.cacheDir)
-		return this.concatFiles(cache.children)
+		return this.concatFiles(cache)
 	}
 	async concatFiles(files, saveFile = true) {
 		let blocklistPath = path.resolve(`${path.resolve()}/blocklist`);
-		await fs.writeFile(blocklistPath, "");
+		if (saveFile) {
+			await fs.writeFile(blocklistPath, "# Start Blocklist");
+		}
 		for (let i = 0; i < files.length; i++) {
 			let file = files[i]
 			if (file.hasOwnProperty("children")) {
@@ -171,7 +174,8 @@ export class Generator {
 	}
 	shouldSkip(name, i) {
 		if (this.options.skip.includes(name)) {
-			this.options.skip.splice(i, 1)
+		//console.log("Skip", name)
+			//this.options.skip.splice(i, 1)
 			return true
 		}
 		if (this.skip.includes(name))	{
@@ -186,7 +190,7 @@ export class Generator {
 				data.splice(i, 1)
 			}
 			if (this.hasOwnProperty("children")) {
-				this.walkInfo(data[i].children)
+				return this.walkInfo(data[i].children)
 			}
 		}
 		return data;

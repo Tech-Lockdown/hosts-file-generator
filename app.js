@@ -39,7 +39,7 @@ app.post('/api/hosts', async(req, res) => {
 		console.log(req.body)
 		const generator = new Generator(req.body);
 		let blocklist = await generator.getBlocklist();
-		//console.log(blocklist)
+		//console.log("hsots files:", blocklist)
 		//let payload = blocklist.text();
     res.send(blocklist)
 })
