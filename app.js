@@ -11,7 +11,7 @@ var whitelist = [
 	'http://localhost:3000', 
 	'http://localhost:1313', 
 	'http://localhost:8888', 
-	'http://techlockdown.com',
+	'https://techlockdown.com',
 	'https://pmo-dev.netlify.app',
 	'https://pmo-stage.netlify.app'
 ]
@@ -25,7 +25,7 @@ var corsOptionsDelegate = function (req, callback) {
   callback(null, corsOptions) // callback expects two parameters: error and options
 }
 app.use(cors(corsOptionsDelegate))
-app.listen(process.env.PORT || 3000, console.log('App Running'))
+app.listen(process.env.PORT || 5000, console.log('App Running'))
 
 const BASE_DIR = path.resolve();
 app.get('/', async(req, res) => {
@@ -36,18 +36,20 @@ app.use(bodyParser.json())
 
 // Return host file entries based on skipped items
 app.post('/api/hosts', async(req, res) => {
-		console.log("reqw", req.body)
+		console.log(req.body)
 		const generator = new Generator(req.body);
 		let blocklist = await generator.getBlocklist();
 		//console.log(blocklist)
 		//let payload = blocklist.text();
     res.send(blocklist)
 })
-
 app.get('/api/hosts', async(req, res) => {
-		const generator = new Generator();
-		let options = await generator.getCacheMap();
-		//console.log(blocklist)
+		if (req.query.skip) {
+			req.query.skip = req.query.skip.split(",")
+		}
+		const generator = new Generator(req.query);
+		let blocklist = await generator.getCacheMap();
+		console.log("blocklist:", blocklist)
 		//let payload = blocklist.text();
-    res.send(options)
+    res.send(blocklist)
 })

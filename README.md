@@ -8,6 +8,9 @@ Generate the files in the cache directory based on the contents of `./data`. Thi
 Create a blocklist file containing all entries (that are not skipped) from the cache directory. Override generator.options.skip with file/folder names (do not include extensions) to customize the output.
 `npm run generate:blocklist`
 
+Get a map of the cache directory with file/folder names.
+`npm run get:options`
+
 *Source files curated from [nextdns.io](https://nextdns.io)*
 
 # nextdns/metadata

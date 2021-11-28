@@ -6,7 +6,8 @@ import fetch from "node-fetch";
 import fs from "fs/promises";
 import { existsSync, readFileSync, mkdirSync, writeFileSync } from 'fs';
 import path from "path";
-import { dataMap, cacheMap } from "./utils.js"
+import { dataMap, cacheMap, countLines } from "./utils.js"
+import { count } from "console";
 
 function replaceEachLine(data, replacementText = "0.0.0.0 ") {
 	return data.replace(/^(?!#)(?!\s*$).*/gm, replacementText + "$&")
@@ -126,15 +127,16 @@ export class Generator {
 	async concatFiles(files, saveFile = true) {
 		let blocklistPath = path.resolve(`${path.resolve()}/blocklist`);
 		await fs.writeFile(blocklistPath, "");
-		for (const file of files) {
+		for (let i = 0; i < files.length; i++) {
+			let file = files[i]
 			if (file.hasOwnProperty("children")) {
-				if (!this.options.skip.includes(file.name) && !this.skip.includes(file.name)) {
+				if (!this.shouldSkip(file.name, i)) {
 					await this.concatFiles(file.children, saveFile)
 				}
 			}
 			if (file.hasOwnProperty("path")) {
 				// If not skipping the file
-				if (!this.options.skip.includes(file.name) && !this.skip.includes(file.name)) {
+				if (!this.shouldSkip(file.name, i)) {
 					let contents = await fs.readFile(path.resolve(this.cacheDir + "/" + file.path))
 					if (saveFile) {
 						await fs.appendFile(blocklistPath, contents)
@@ -149,30 +151,98 @@ export class Generator {
 			return this.blocklistCache
 		}
 	}
+
+	async walkFiles(files, pathcb) {
+		for (const file of files) {
+			if (file.hasOwnProperty("children")) {
+				if (!this.options.skip.includes(file.name) && !this.skip.includes(file.name)) {
+					await this.walkFiles(file.children, pathcb)
+				}
+			}
+			if (file.hasOwnProperty("path")) {
+				// If not skipping the file
+				if (!this.options.skip.includes(file.name) && !this.skip.includes(file.name)) {
+					if (pathcb) {
+						await pathcb(file, path.resolve(this.cacheDir + "/" + file.path))
+					}
+				}
+			}
+		}
+	}
+	shouldSkip(name, i) {
+		if (this.options.skip.includes(name)) {
+			this.options.skip.splice(i, 1)
+			return true
+		}
+		if (this.skip.includes(name))	{
+			return true
+		}
+		return false
+	}
+	walkInfo(data) {
+		for (let i = 0; i < data.length; i++) {
+			if (this.shouldSkip(data[i].name, i)) {
+				// delete the entry
+				data.splice(i, 1)
+			}
+			if (this.hasOwnProperty("children")) {
+				this.walkInfo(data[i].children)
+			}
+		}
+		return data;
+	}
 	async getCacheMap() {
 		// Returns a map of the cache directory
 		// Skips any specified names
-		return await cacheMap(this.cacheDir, [...this.skip, ...this.options.skip])
+		let data = readFileSync("./info.json")
+		data = JSON.parse(data)
+		return this.walkInfo(data)
 	}
-
+	async setCacheMap() {
+		let map = await cacheMap(this.cacheDir, [...this.skip, ...this.options.skip])
+		await this.walkFiles(map.children, async (file, path) => {
+			return new Promise(async(resolve, reject) => {
+				let count = await countLines(path)
+				file.count = count;
+				resolve(count)
+			})
+		})
+		fs.writeFile("./info.json", JSON.stringify(map.children))
+		return map.children
+	}
 }
-const generator = new Generator();
+
 (async function() {
 	//await generator.start();
 	const args = process.argv.slice(2)
 	console.log(args)
 	if (args.includes("--blocklist")) {
+		const generator = new Generator();
 		let files = await generator.createBlocklist();
 	}
 	if (args.includes("--getblocklist")) {
+const generator = new Generator();
 		let blocklist = await generator.getBlocklist();
 		console.log(blocklist)
 	}
 	if (args.includes("--options")) {
+		const generator = new Generator({skip: []});
 		let cacheMap = await generator.getCacheMap();
 		console.log(cacheMap)
 	}
+	if (args.includes("--getcachemap")) {
+		const generator = new Generator();
+		let cacheMap = await generator.getCacheMap();
+		console.log(cacheMap)
+	}
+	if (args.includes("--setcachemap")) {
+		const generator = new Generator({skip: []});
+		generator.skip = [];
+		let cacheMap = await generator.setCacheMap();
+		console.log(cacheMap)
+	}
 	if (args.includes("--cache")) {
+		const generator = new Generator();
 		let files = await generator.start();
 		console.log(args)
 	}
