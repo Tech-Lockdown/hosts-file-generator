@@ -7,11 +7,7 @@ import fs from "fs/promises";
 import { existsSync, readFileSync, mkdirSync, writeFileSync } from 'fs';
 import path from "path";
 import { dataMap, cacheMap, countLines } from "./utils.js"
-import { count } from "console";
 
-function replaceEachLine(data, replacementText = "0.0.0.0 ") {
-	return data.replace(/^(?!#)(?!\s*$).*/gm, replacementText + "$&")
-}
 const BASE_DIR = path.resolve();
 
 export class Generator {
@@ -28,7 +24,46 @@ export class Generator {
 		this.blocklistPath = path.resolve(`${path.resolve()}/blocklist`);
 		this.blocklistCache = "";
 	}
-	async start() {
+	
+	async test() {
+		let data = await fs.readFile(path.resolve("./cache/parentalcontrol/categories/porn"), "utf-8")
+		let matched = this.replaceEachLine(data)
+		// console.log(matched)
+	}
+
+	replaceEachLine(data, replacementText = "0.0.0.0 ") {
+		let pattern = /^(?!#)(?!\s*$).*/gm
+		if (this.options.format === "domains") {
+			pattern = /^(?!#)(?!\s*$).*/gm
+			replacementText = "";
+		}
+		return data.replace(pattern, function(match, p1, p2, p3, offset, string) {
+			match = match.replace(/(0\.0\.0\.0\s|127\.0\.0\.1\s*)/gm, "")
+			console.log(match)
+			return match
+		})
+	}
+
+
+	async walkFiles(files, pathcb) {
+		for (const file of files) {
+			if (file.hasOwnProperty("children")) {
+				if (!this.options.skip.includes(file.name) && !this.skip.includes(file.name)) {
+					await this.walkFiles(file.children, pathcb)
+				}
+			}
+			if (file.hasOwnProperty("path")) {
+				// If not skipping the file
+				if (!this.options.skip.includes(file.name) && !this.skip.includes(file.name)) {
+					if (pathcb) {
+						await pathcb(file, path.resolve(this.cacheDir + "/" + file.path))
+					}
+				}
+			}
+		}
+	}
+	// Generate the cache directory
+	async buildCache() {
 		let data = await dataMap(this.dataPath)
 		return this.generateFiles(data.children)
 	}
@@ -67,19 +102,19 @@ export class Generator {
 			}
 		} else {
 			console.log("normal file", itemPath)
-			src = replaceEachLine(src)
+			src = this.replaceEachLine(src)
 		}
 		return src;
 
 	}
 	async handleSource(source) {
 		let fileContent = await this.fetchData(source.url);
-		if (source.format !== "hosts" && source.format !== "domains") {
-			return false
-		}
-		if (source.format === "domains") {
-			fileContent = replaceEachLine(fileContent)
-		}
+		// if (source.format !== "hosts" && source.format !== "domains") {
+		// 	return false
+		// }
+		// if (source.format === "domains") {
+			fileContent = this.replaceEachLine(fileContent)
+		// }
 		return fileContent;
 	}
 	async handleSources(sources) {
@@ -104,8 +139,12 @@ export class Generator {
 		try {
 			console.log("fetching...", src)
 			const response = await fetch(src)
-			const data = await response.text();
-			return Promise.resolve(data);
+			if (response.status === 200) {
+				const data = await response.text();
+				return Promise.resolve(data);
+			} else {
+				throw "Not found"
+			}
 		} catch(err) {
 			console.log("fetchData err", err)
 			return Promise.resolve("")
@@ -157,23 +196,6 @@ export class Generator {
 		}
 	}
 
-	async walkFiles(files, pathcb) {
-		for (const file of files) {
-			if (file.hasOwnProperty("children")) {
-				if (!this.options.skip.includes(file.name) && !this.skip.includes(file.name)) {
-					await this.walkFiles(file.children, pathcb)
-				}
-			}
-			if (file.hasOwnProperty("path")) {
-				// If not skipping the file
-				if (!this.options.skip.includes(file.name) && !this.skip.includes(file.name)) {
-					if (pathcb) {
-						await pathcb(file, path.resolve(this.cacheDir + "/" + file.path))
-					}
-				}
-			}
-		}
-	}
 	shouldSkip(name, i) {
 		if (this.options.skip.includes(name)) {
 		//console.log("Skip", name)
@@ -218,50 +240,5 @@ export class Generator {
 	}
 }
 
-(async function() {
-	//await generator.start();
-	const args = process.argv.slice(2)
-	console.log(args)
-	if (args.includes("--blocklist")) {
-		const generator = new Generator({
-			skip: [
-				'analytics',
-				'privacy',
-				'security',
-				'services',
-				'dating',
-				'gambling',
-				'social-networks'
-			]
-		});
-		let files = await generator.createBlocklist();
-	}
-	if (args.includes("--getblocklist")) {
-const generator = new Generator();
-		let blocklist = await generator.getBlocklist();
-		console.log(blocklist)
-	}
-	if (args.includes("--options")) {
-		const generator = new Generator({skip: []});
-		let cacheMap = await generator.getCacheMap();
-		console.log(cacheMap)
-	}
-	if (args.includes("--getcachemap")) {
-		const generator = new Generator();
-		let cacheMap = await generator.getCacheMap();
-		console.log(cacheMap)
-	}
-	if (args.includes("--setcachemap")) {
-		const generator = new Generator({skip: []});
-		generator.skip = [];
-		let cacheMap = await generator.setCacheMap();
-		console.log(cacheMap)
-	}
-	if (args.includes("--cache")) {
-		const generator = new Generator();
-		let files = await generator.start();
-		console.log(args)
-	}
-	//generator.createHostsFile();
-}())
 //generator.fetchData();
+
