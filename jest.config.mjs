@@ -54,7 +54,7 @@ export default {
   // forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
-  // globalSetup: undefined,
+  globalSetup: "./globalSetup.js",
 
   // A path to a module which exports an async function that is triggered once after all test suites
   // globalTeardown: undefined,
@@ -119,7 +119,6 @@ export default {
   // A list of paths to directories that Jest should use to search for files in
   roots: [
     "<rootDir>",
-    "./"
   ],
 
   // Allows you to use a custom runner instead of Jest's default test runner
@@ -176,10 +175,9 @@ export default {
   // transform: {},
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  // transformIgnorePatterns: [
-  //   "\\\\node_modules\\\\",
-  //   "\\.pnp\\.[^\\\\]+$"
-  // ],
+  transformIgnorePatterns: [
+      'node_modules/(?!(fetch-blob|node-fetch)/)'
+  ]
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,

@@ -24,12 +24,14 @@
   },
   "homepage": "https://github.com/Tech-Lockdown/hosts-file-generator#readme",
   "dependencies": {
+    "axios": "^0.24.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "file-saver": "^2.0.5",
     "node-fetch": "^3.1.0",
-    "replacestream": "^4.0.3"
+    "replacestream": "^4.0.3",
+    "request": "^2.88.2"
   },
   "type": "module",
   "devDependencies": {
