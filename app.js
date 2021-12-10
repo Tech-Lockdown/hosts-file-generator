@@ -4,6 +4,7 @@ import { Generator } from './generate.js'
 import path from "path"
 import bodyParser from 'body-parser'
 import cors from "cors"
+import fs from "fs"
 
 // creating a instance of express
 const app = express();
@@ -45,6 +46,19 @@ app.post('/api/hosts', async(req, res) => {
 		//console.log("hsots files:", blocklist)
 		//let payload = blocklist.text();
     res.send(blocklist)
+})
+app.get('/download', async(req, res) => {
+		let readStream = fs.createReadStream("./blocklist");
+		res.set({
+			"Content-Type": "application/octet-stream",
+			"Content-Disposition": "attachment; filename=blocklist.txt"
+		})
+			readStream.pipe(res);
+			
+		readStream.on('end', () => {
+        readStream.unpipe(res);
+        res.status(200).send();
+		});
 })
 app.get('/api/hosts', async(req, res) => {
 		if (req.query.skip) {
