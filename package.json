@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watchAll --notify",
+    "test-server": "node tests/test.server.js",
     "start": "node app.js",
     "generate:blocklist": "node cli.js --blocklist parentalcontrol,privacy,security",
     "generate:cache": "node cli.js --cache parentalcontrol,privacy,security",
