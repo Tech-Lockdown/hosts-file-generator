@@ -1,6 +1,6 @@
 import fs from "fs";
-import path, { resolve } from "path";
-import { Ingest } from "../lib/ingest.js"
+import path from "path";
+import { Output } from "../lib/output.js"
 import * as testUtils from "./utils"
 
 let testHostsInput = path.resolve("./tests/input/formats/host.txt");
@@ -74,6 +74,30 @@ describe("Generate streams", () => {
 
 	})
 	test("Combine fetch streams from json sources", async() => {
+		const ingest = new Ingest(path.resolve(path.resolve("./tests/input/sources.json")))
+		// const ingest = new Ingest(path.resolve(path.resolve("./data/parentalcontrol/categories/porn.json")))
+
+		async function readWriteFile() {
+			return new Promise(async(resolve, reject) => {
+				let outputPath = path.resolve("./tests/output/sources.txt")
+				let newFile = fs.createWriteStream(outputPath)
+				let readStream = await ingest.startReadStream()
+				readStream.pipe(newFile)
+				newFile.on("close", () => {
+					return resolve(outputPath)
+				})
+
+			})
+		}
+		let outputPath = await readWriteFile()
+		let outputFileContents = fs.readFileSync(outputPath)
+		let lines = outputFileContents.toString().match(/\n/gm)
+		// console.log("errors", ingest.errors)
+		expect(lines.length).toEqual(testLineCount*2)
+		expect(ingest.errors.length).toEqual(0)
+
+	})
+	test("Get a cached file as a stream", async() => {
 		const ingest = new Ingest(path.resolve(path.resolve("./tests/input/sources.json")))
 		// const ingest = new Ingest(path.resolve(path.resolve("./data/parentalcontrol/categories/porn.json")))
 

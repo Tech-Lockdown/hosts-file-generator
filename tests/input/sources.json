@@ -1,0 +1,12 @@
+{
+  "sources": [
+    {
+      "url": "http://localhost:5000/tests/formats/host",
+      "format": "hosts"
+    },
+    {
+      "url": "http://localhost:5000/tests/formats/domains",
+      "format": "domains"
+    }
+	]
+}

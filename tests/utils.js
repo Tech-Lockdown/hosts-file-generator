@@ -1,4 +1,4 @@
-export const createTestHostsFile = (lineCount, prefix = "127.0.0.1 ", suffix = "website.com", comments = true) => {
+export const createTestHostsFile = (lineCount, prefix = "127.0.0.1     ", suffix = "website.com", comments = true) => {
 	let string = "";
 	for (let i = 0; i < lineCount; i++) {
 		string+=`${prefix}${i}${suffix} \n`
