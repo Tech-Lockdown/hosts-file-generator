@@ -54,8 +54,8 @@ app.post('/api/hosts', async(req, res) => {
 		// //let payload = blocklist.text();
 		// res.send(blocklist)
 })
-app.get('/api/download', async(req, res) => {
-		let generator = new Generator()
+app.post('/api/download', async(req, res) => {
+		let generator = new Generator(req.body)
 		let re = await generator.start()
 		console.log("Reading temp file...", re.path)
 		let readStream = fs.createReadStream(re.path);

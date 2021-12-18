@@ -137,7 +137,7 @@ export class Generator {
 	}
 	async fetchData(src) {
 		try {
-			console.log("fetching...", src)
+			// console.log("fetching...", src)
 			const response = await fetch(src)
 			if (response.status === 200) {
 				const data = await response.text();

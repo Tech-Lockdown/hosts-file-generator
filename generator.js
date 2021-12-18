@@ -15,6 +15,7 @@ export class Generator {
 			output_type: "download",
 			...options
 		}
+		console.log(this.options)
 
 	}
 	getInfo() {
@@ -26,6 +27,7 @@ export class Generator {
 	createBlocklist() {
 		return new Promise(async(resolve, reject) => {
 			let fileMap = this.getInfo()
+			console.log("fileMap", fileMap)
 			let streams = await this.walk(fileMap)
 			// let testPath = fileMap[0].children[0].path
 				// console.log("test path", testPath)
@@ -42,7 +44,7 @@ export class Generator {
 				if (child.path) {
 					let ingest = new Ingest(child.path, { ignoreCache: true })
 					let stream = await ingest.startReadStream()
-					console.log("Stream ingested", stream.readable)
+					// console.log("Stream ingested", stream.readable)
 					// if (stream.readable) {
 						streams.push(stream)
 					// }
