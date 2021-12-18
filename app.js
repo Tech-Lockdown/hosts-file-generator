@@ -1,1 +1,1 @@
-import "./server"
+import { app } from "./server.js"

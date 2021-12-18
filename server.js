@@ -1,5 +1,6 @@
 import express from 'express'
-import { Generator } from './generate.js'
+// import { Generator } from './generate.js'
+import { Generator } from './generator.js'
 import path from "path"
 import bodyParser from 'body-parser'
 import cors from "cors"
@@ -35,42 +36,49 @@ const BASE_DIR = path.resolve();
 app.get('/', async(req, res) => {
 	res.sendFile(path.resolve(path.resolve() +'/index.html'))
 })
-app.get('/blocklist', async(req, res) => {
-	res.sendFile(path.resolve(path.resolve() +'/blocklist'))
-})
 
 app.use(bodyParser.json())
 
 // Return host file entries based on skipped items
-app.post('/api/hosts', async(req, res) => {
-		console.log(req.body)
-		const generator = new Generator(req.body);
-		let blocklist = await generator.getBlocklist();
-		//console.log("hsots files:", blocklist)
-		//let payload = blocklist.text();
-		res.send(blocklist)
+app.post('/api/info', async(req, res) => {
+	let generator = new Generator(req.body)
+	let re = await generator.getInfo()
+	res.send(JSON.stringify(re))
 })
-app.get('/download', async(req, res) => {
-		let readStream = fs.createReadStream("./blocklist");
+
+app.post('/api/hosts', async(req, res) => {
+		// console.log(req.body)
+		// const generator = new Generator(req.body);
+		// let blocklist = await generator.getBlocklist();
+		// //console.log("hsots files:", blocklist)
+		// //let payload = blocklist.text();
+		// res.send(blocklist)
+})
+app.get('/api/download', async(req, res) => {
+		let generator = new Generator()
+		let re = await generator.start()
+		console.log("Reading temp file...", re.path)
+		let readStream = fs.createReadStream(re.path);
 		res.set({
 			"Content-Type": "application/octet-stream",
 			"Content-Disposition": "attachment; filename=blocklist.txt"
 		})
-			readStream.pipe(res);
+		readStream.pipe(res);
 			
 		readStream.on('end', () => {
-				readStream.unpipe(res);
-				res.status(200).send();
+			readStream.unpipe(res);
+			re.cleanup()
+			res.status(200).send();
 		});
 })
 app.get('/api/hosts', async(req, res) => {
-		if (req.query.skip) {
-			req.query.skip = req.query.skip.split(",")
-		}
-		const generator = new Generator(req.query);
-		let blocklist = await generator.getCacheMap();
-		console.log("blocklist:", blocklist)
-		//let payload = blocklist.text();
-		res.send(blocklist)
+		// if (req.query.skip) {
+		// 	req.query.skip = req.query.skip.split(",")
+		// }
+		// const generator = new Generator(req.query);
+		// let blocklist = await generator.getCacheMap();
+		// console.log("blocklist:", blocklist)
+		// //let payload = blocklist.text();
+		// res.send(blocklist)
 })
 

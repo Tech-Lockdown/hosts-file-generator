@@ -7,6 +7,10 @@
     {
       "url": "http://localhost:5000/tests/formats/domains",
       "format": "domains"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/notracking/hosts-blocklists/master/domains.txt",
+      "format": "dnsmasq"
     }
 	]
 }
