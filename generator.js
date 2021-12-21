@@ -27,11 +27,11 @@ export class Generator {
 	createBlocklist() {
 		return new Promise(async(resolve, reject) => {
 			let fileMap = this.getInfo()
-			console.log("fileMap", fileMap)
+			// console.log("fileMap", fileMap)
 			let streams = await this.walk(fileMap)
 			// let testPath = fileMap[0].children[0].path
 				// console.log("test path", testPath)
-			console.log("streams", streams.length)
+			// console.log("streams", streams.length)
 			let readStream = new MultiStream(streams)
 			// console.log("streams", readStream)
 			return resolve(routeStream(readStream))

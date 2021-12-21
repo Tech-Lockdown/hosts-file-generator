@@ -13,7 +13,7 @@ let nestedArray = [
                 name: "blocklist",
                 children: [
                     {
-                        name: "analytics",
+                        name: "analytics.json",
                         path: "path"
                     }
                 ]
@@ -30,6 +30,10 @@ let nestedArray = [
     }
 ]
 
+const newNestedArray = (arr) => {
+    return JSON.parse(JSON.stringify(arr))
+}
+
 function getNestedCount(nArray) {
     let count = 0;
     utils.walker(nArray, (item) => {
@@ -40,16 +44,33 @@ function getNestedCount(nArray) {
 
 describe("Nested array", () => {
     test("Exclude a file", () => {
+        const testArray = newNestedArray(nestedArray)
         let excludeNames = [
             "piracy"
         ]
-        let inputCount = getNestedCount(nestedArray)
-        let finalArray = utils.filterNestedArray(nestedArray, (item) => {
+        let finalArray = utils.filterNestedArray(testArray, (item) => {
             return !excludeNames.includes(item.name)
         })
-        console.log("final array", finalArray)
-        console.log("Input count: ", inputCount, "Excluded count: ", excludeNames.length, "Filtered Count: ", getNestedCount(finalArray))
-        expect(getNestedCount(finalArray)).toEqual(inputCount - excludeNames.length)
+        utils.walker(finalArray, (item) => {
+            // console.log(item)
+            expect(excludeNames.includes(item.name)).toBe(false)
+        })
+        console.log(finalArray)
+        // expect(finalArray)
+    })
+    test("Exclude a json file", () => {
+        const testArray = newNestedArray(nestedArray)
+        let excludeNames = [
+            "analytics.json"
+        ]
+        let finalArray = utils.filterNestedArray(testArray, (item) => {
+            return !excludeNames.includes(item.name)
+        })
+        utils.walker(finalArray, (item) => {
+            // console.log(item)
+            expect(excludeNames.includes(item.name)).toBe(false)
+        })
+        console.log(finalArray)
         // expect(finalArray)
     })
 })
