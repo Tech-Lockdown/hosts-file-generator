@@ -21,21 +21,31 @@ describe("Start Generation", () => {
 		let results = await info.getInfo()
 
 		let unchecked = []
-		utils.walker(results.children, (item) => {
-			if (item.name !== "9gag") {
+		let tests = [
+			"9gag",
+			"services",
+			"parentalcontrol"
+		]
+		utils.walker(results, (item) => {
+			if (item.name !== "9gag" && item.name !== "parentalcontrol" && item.name !== "services") {
 				unchecked.push(item.name)
 			}
 		})
+		// console.log("unchecked", unchecked)
+		expect(unchecked.length > 0)
 
-				// console.log("unchecked", unchecked)
 		let generator = new Generator({
 			exclude: unchecked,
 			blocklist_path: path.resolve("./tests/output/blocklist_test")
 		})
+		// console.log("unchcked", unchecked)
 		// console.log(generator)
 		// let re = await generator.start()
 		let re = await generator.getInfo()
-		console.log("info", re)
+		utils.walker(re, (item) => {
+			expect(tests.includes(item.name)).toBe(true)
+		})
+		// console.log("info", re)
 		// let contents = fs.readFileSync(path.resolve(re.path), "utf8")
 		// console.log(contents)
 	})

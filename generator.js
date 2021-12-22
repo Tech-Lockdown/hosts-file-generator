@@ -2,12 +2,11 @@ import { Ingest } from "./lib/ingest.js"
 import { DirectoryInfo } from "./lib/info.js"
 import { routeStream } from "./lib/stream_router.js"
 import path from "path"
-import fs from "fs"
 import * as utils from "./lib/utils.js"
 import MultiStream from "multistream"
 
 export class Generator {
-	constructor(options = {}) {
+	constructor(options = {}, name) {
 
 		this.options = {
 			baseDir: path.resolve("data"),
@@ -15,13 +14,16 @@ export class Generator {
 			output_type: "download",
 			...options
 		}
-		console.log(this.options)
+		this.name = name
 
 	}
 	getInfo() {
+		let exclude = this.options.exclude
 		let info = new DirectoryInfo(this.options.baseDir, {
-			exclude: this.options.exclude
+			exclude: exclude
 		})
+		// console.log(this.name, info)
+		// console.log("Exclude", exclude)
 		return info.filterInfo();
 	}
 	createBlocklist() {
