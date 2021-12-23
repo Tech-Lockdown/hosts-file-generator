@@ -15,7 +15,11 @@ var whitelist = [
 	'http://localhost:8888', 
 	'https://techlockdown.com',
 	'https://pmo-dev.netlify.app',
-	'https://pmo-stage.netlify.app'
+	'https://pmo-stage.netlify.app',
+	'https://techlockdown.herokuapp.com',
+	'http://techlockdown.herokuapp.com',
+	'https://hosts.techlockdown.com',
+	'http://hosts.techlockdown.com'
 ]
 
 var corsOptionsDelegate = function (req, callback) {
