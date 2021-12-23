@@ -13,12 +13,9 @@ options();
 const download = async() => {
 	console.log("downloading")
 	try {
-		const response = await fetch(`/api/hosts`, {
+		const response = await fetch(`/api/download`, {
 			method: "post",
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				skip: ["analytics", "security", "blocklists"]
-			})
+			headers: { 'Content-Type': 'application/json' }
 		})
 		const text = await response.text();
 		//console.log(text)
