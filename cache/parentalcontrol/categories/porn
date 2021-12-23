@@ -368,24 +368,12 @@ yamidas.yamiboard.com
 yamigama.com
 yespornplease.com
 # PornAway blacklist
-# D̲i̲r̲e̲c̲t̲ ̲P̲o̲r̲n̲ ̲U̲R̲L̲ ̲F̲i̲l̲e̲ (see line 13, 14)
-
-# Get PornAway android app in XDA Developer Forum.
+# D̲i̲r̲e̲c̲t̲ ̲P̲o̲r̲n̲ ̲U̲R̲L̲ ̲F̲i̲l̲e̲ (see line 13, 14)# Get PornAway android app in XDA Developer Forum.
 # Last updated: 3 August, 2018.
-# Licensed under The MIT License.
-
-# Number of Unique URLs: 26000 [PORN DOMAINS ONLY]
-
-# [̲̅P̲̅][̲̅o̲̅][̲̅r̲̅][̲̅n̲̅][̲̅A̲̅][̲̅w̲̅][̲̅a̲̅][̲̅y̲̅]
-
-# Additional source & thanks to: Clefspeare13 (github), Sinfonietta (github).
+# Licensed under The MIT License.# Number of Unique URLs: 26000 [PORN DOMAINS ONLY]# [̲̅P̲̅][̲̅o̲̅][̲̅r̲̅][̲̅n̲̅][̲̅A̲̅][̲̅w̲̅][̲̅a̲̅][̲̅y̲̅]# Additional source & thanks to: Clefspeare13 (github), Sinfonietta (github).
 # This list is all of  porn SITES. Enabling it will not block porn ads but only the origin sites. 
-# There's a different host file available for verified porn ads/trackers.
-
-localhost
-::1  localhost
-
-0azx1.com
+# There's a different host file available for verified porn ads/trackers.localhost
+::1  localhost0azx1.com
 0c47f8422d3f.com
 0cc175b9c0f1b6a831c399e269772661.com
 0dax.com
@@ -607,7 +595,6 @@ localhost
 4wheel.de
 4xporn.com
 4youcom.com
-5.100.249.215
 5dimessports.com
 5f055i.co.cc
 5finder.com
@@ -686,7 +673,6 @@ localhost
 10y.ch
 11-15.net
 11pikachu.ru
-12.170.116.68
 12.com
 12azar.ir
 12bet.com
@@ -768,7 +754,6 @@ localhost
 69tubex.com
 72-news.com
 72impala.com
-74.112.173.77
 77sky.de
 78tdd75.com
 83net.jp
@@ -780,8 +765,6 @@ localhost
 88proxy.xyz
 88square.biz
 90i.info
-91.205.157.38
-91.212.132.230
 91abcw.com
 94cdn.com
 96id.de
@@ -822,7 +805,6 @@ localhost
 123sex.biz
 123sex.org
 138shenbosbo.com
-164.109.51.67
 166f.com
 175storis.com
 178evakuator178.ru
@@ -21383,7 +21365,7 @@ strony.erotyczne.biz
 stroy-portal22.ru
 stroyagorod.ru
 stroydetali.ru
-stroyhelp-dv.ru
+ stroyhelp-dv.ru
 stroymonolit.su
 stroynayafigura.ru
 stroyplus.ru
@@ -25318,16 +25300,9 @@ zzbroya.com.ua
 zzhomes.com
 zzqrt.com
 zzsyw.com
-zzztube.com
-
-# [BETA] List of porn doamins with multitple IP addresses that serves based on the user agent. 
-
-104.27.164.240  # pornlovo.com
-104.27.165.240
-172.64.202.7  # m.fuckup.xxx
-172.64.203.7
-88.208.18.30  #xhamster.com (non-mobile + mobile: de, fr, es, it, pl, pt, jp, nl)
-88.208.29.24
+zzztube.com# [BETA] List of porn doamins with multitple IP addresses that serves based on the user agent. # pornlovo.com
+# m.fuckup.xxx
+#xhamster.com (non-mobile + mobile: de, fr, es, it, pl, pt, jp, nl)
 de.m.xhamster.com 
 fr.m.xhamster.com
 es.m.xhamster.com
@@ -25336,13 +25311,8 @@ pl.m.xhamster.com
 pt.m.xhamster.com
 jp.m.xhamster.com
 nl.m.xhamster.com
-88.208.29.25  #ru.xhamster.com
-88.208.18.31
-ru.m.xhamster.com
-
-# List of duplicate (of above) & unique URLs prepended "www", as they may resolve to a different address in certain circumstances (i.e. phone, country).
-
-www.0xxx.ws
+#ru.xhamster.com
+ru.m.xhamster.com# List of duplicate (of above) & unique URLs prepended "www", as they may resolve to a different address in certain circumstances (i.e. phone, country).www.0xxx.ws
 www.00webcams.com
 www.0013langford.tumblr.com
 www.007angels.com
@@ -31569,9 +31539,7 @@ www.ztod.com
 www.zuzandra.com
 www.zzcartoon.com
 www.zzgays.com
-www.zzztube.com
-
-# Look up for the porn_ads file for porn-ads only domains.
+www.zzztube.com# Look up for the porn_ads file for porn-ads only domains.
 # That's all for now.
 007angels.com
 007milf.com
@@ -33402,6 +33370,7 @@ bluegirlfriends.com
 blueporns.com
 bluewebcams.com
 bn.premiumhdv.com
+bngpt.com
 board.freeones.com
 boards.420chan.org
 boards.4chan.org
@@ -39266,6 +39235,7 @@ nrvhomes.angelfire.com
 ns4w.org
 ns99.info
 nsfw.reddit.com
+nsfw.xxx
 nsgalleries.com
 nu-bay.com
 nubdsm.com
@@ -39872,6 +39842,7 @@ pimproll.com
 pimpwebcams.com
 pin-up-angels.net
 pinaccesscode.com
+pinayflix.tv
 pinayvideoscandals.com
 pinkbabes.net
 pinkfineart.com
@@ -40349,6 +40320,7 @@ pornteenclips.com
 pornteens.xyz
 pornteentube.pro
 pornthor.com
+porntn.com
 porntopic.com
 porntracker.com
 porntrex.com
@@ -40361,7 +40333,6 @@ porntubes4k.com
 porntubewatch.com
 porntubezoo.com
 porntv.icu
-porntn.com
 pornurl.pw
 pornv.io
 pornve.com
@@ -40461,6 +40432,7 @@ privecam.nl
 pro-ana-angels.wetpaint.com
 profporn.co
 projectvoyeur.com
+promo-bc.com
 promo.aebn.net
 promo.ashleyscandy.com
 promo.badoink.com
@@ -45575,13 +45547,13 @@ www.pornpicsmovies.net
 www.pornroxxx.com
 www.pornstarslikeitbig.co.uk
 www.pornstereo.com
+www.porntn.com
 www.porntopic.com
 www.porntracker.com
 www.porntube.com
 www.porntube69.net
 www.porntubedirect.info
 www.porntv.com
-www.porntn.com
 www.pornurl.pw
 www.pornve.com
 www.pornvideom.net
@@ -47211,5 +47183,20 @@ zvrhlost.cz
 zzbabes.com
 zzpornpics.com
 zzztube.com
+ixiporn.com
+lustmaza.com
+dropmaza.com
+artsporn.com
+sexfullmovies.com
+exmovies.co.in
+teensexmix.com
+indiansexmms.info
+rajwap.me
+smutindia.pro
+pinkheartmovies.xyz
+ggmaal.cyou
+kashtanka.tv
+lustesthd.com
 nsfw.xxx
 pinayflix.tv
+lustmaza.live

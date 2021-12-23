@@ -12,7 +12,7 @@ fs.writeFileSync(
 	testUtils.createTestHostsFile(testLineCount)
 )
 
-let testDomainsInput = path.resolve("./tests/input/formats/domains.txt");
+let testDomainsInput = path.resolve("./tests/input/formats/domains");
 fs.writeFileSync(
 	testDomainsInput,
 	testUtils.createTestHostsFile(testLineCount, "")
@@ -27,11 +27,11 @@ fs.writeFileSync(
 afterAll(() => {
 	// Remove test file each time
 	const outputs = [
-		path.resolve("./tests/output/domains.txt"),
+		path.resolve("./tests/output/domains"),
 		path.resolve("./tests/output/sources.txt"),
 		path.resolve("./tests/output/cache/domains"),
 		path.resolve("./tests/output/cache/sources"),
-		path.resolve("./tests/output/cache/formats/domains")
+		// path.resolve("./tests/output/cache/formats/domains")
 	]
 	console.log("!!Clearing Test Output Files!!")
 	for (const output of outputs) {
@@ -108,7 +108,8 @@ describe("Generate streams", () => {
 		ignoreCache: false
 	}
 	test("Should stream without any comments or whitespace", async() => {
-		const ingest = new Ingest("./formats/domains.txt", options)
+		const ingest = new Ingest("./formats/domains", options)
+		// const ingest = new Ingest("./parentalcontrol/grey-area-content", options)
 
 		async function readWriteFile() {
 			return new Promise(async(resolve, reject) => {
