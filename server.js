@@ -5,6 +5,7 @@ import path from "path"
 import bodyParser from 'body-parser'
 import cors from "cors"
 import fs from "fs"
+import replaceStream from 'replacestream'
 
 export const app = express();
 
@@ -63,7 +64,9 @@ app.post('/api/download', async(req, res) => {
 			"Content-Type": "application/octet-stream",
 			"Content-Disposition": "attachment; filename=blocklist.txt"
 		})
-		readStream.pipe(res);
+		readStream
+		.pipe(replaceStream(/(^[A-Za-z0-9].*)/gm, '127.0.0.1 $1'))
+		.pipe(res);
 			
 		readStream.on('end', () => {
 			readStream.unpipe(res);

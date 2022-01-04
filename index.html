@@ -15,10 +15,7 @@ const download = async() => {
 	try {
 		const response = await fetch(`/api/download`, {
 			method: "post",
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				skip: ["analytics", "security", "blocklists"]
-			})
+			headers: { 'Content-Type': 'application/json' }
 		})
 		const text = await response.text();
 		//console.log(text)

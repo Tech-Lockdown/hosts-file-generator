@@ -103,13 +103,13 @@ describe("Handle Src Types", () => {
 
 describe("Generate streams", () => {
 	let options = {
-		dataDir: path.resolve("./tests/input"),
+		// dataDir: path.resolve("./tests/input"),
 		cacheDir: path.resolve("./tests/output/cache"),
 		ignoreCache: false
 	}
 	test("Should stream without any comments or whitespace", async() => {
-		const ingest = new Ingest("./formats/domains", options)
-		// const ingest = new Ingest("./parentalcontrol/grey-area-content", options)
+		// const ingest = new Ingest("./formats/domains", options)
+		const ingest = new Ingest("./parentalcontrol/grey-area-content", options)
 
 		async function readWriteFile() {
 			return new Promise(async(resolve, reject) => {
@@ -125,32 +125,33 @@ describe("Generate streams", () => {
 		}
 		let outputPath = await readWriteFile()
 		let outputFileContents = fs.readFileSync(outputPath)
+		console.log("lines", outputFileContents.toString())
 		let lines = outputFileContents.toString().match(/\n/gm)
 		expect(lines.length).toEqual(testLineCount)
 
 	})
-	test("Combine fetch streams from json sources", async() => {
-		const ingest = new Ingest("./sources.json", options)
-		// const ingest = new Ingest(path.resolve(path.resolve("./data/parentalcontrol/categories/porn.json")))
+	// test("Combine fetch streams from json sources", async() => {
+	// 	const ingest = new Ingest("./sources.json", options)
+	// 	// const ingest = new Ingest(path.resolve(path.resolve("./data/parentalcontrol/categories/porn.json")))
 
-		async function readWriteFile() {
-			return new Promise(async(resolve, reject) => {
-				let outputPath = path.resolve("./tests/output/cache/sources")
-				let readStream = await ingest.startReadStream()
-				let newFile = fs.createWriteStream(outputPath)
-				readStream.pipe(newFile)
-				newFile.on("close", () => {
-					return resolve(outputPath)
-				})
+	// 	async function readWriteFile() {
+	// 		return new Promise(async(resolve, reject) => {
+	// 			let outputPath = path.resolve("./tests/output/cache/sources")
+	// 			let readStream = await ingest.startReadStream()
+	// 			let newFile = fs.createWriteStream(outputPath)
+	// 			readStream.pipe(newFile)
+	// 			newFile.on("close", () => {
+	// 				return resolve(outputPath)
+	// 			})
 
-			})
-		}
-		let outputPath = await readWriteFile()
-		let outputFileContents = fs.readFileSync(outputPath)
-		let lines = outputFileContents.toString().match(/\n/gm)
-		// console.log("errors", ingest.errors)
-		expect(lines.length).toEqual(testLineCount*2)
-		expect(ingest.errors.length).toEqual(0)
+	// 		})
+	// 	}
+	// 	let outputPath = await readWriteFile()
+	// 	let outputFileContents = fs.readFileSync(outputPath)
+	// 	let lines = outputFileContents.toString().match(/\n/gm)
+	// 	// console.log("errors", ingest.errors)
+	// 	expect(lines.length).toEqual(testLineCount*2)
+	// 	expect(ingest.errors.length).toEqual(0)
 
-	})
+	// })
 })

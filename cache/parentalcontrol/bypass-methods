@@ -1,6 +1,6 @@
-# Blocked domains (and their subdomains) when enabling Parental Control -> Block Bypass Methods.# Apple Private Relay (https://developer.apple.com/support/prepare-your-network-for-icloud-private-relay)
+
 mask.icloud.com
-mask-h2.icloud.com# Encrypted DNS
+mask-h2.icloud.com
 1dot1dot1dot1.cloudflare-dns.com
 8888.google
 a.ns.dnslify.com
@@ -168,7 +168,7 @@ tls-dns-u.odvr.dns-oarc.net
 unicast.censurfridns.dk
 unicast.uncensoreddns.org
 uw-dns.rubyfish.cn
-wdns.233py.com# Web proxies
+wdns.233py.com
 012proxy.ga
 123-24.eport.gr
 1freeproxy.pw
@@ -439,7 +439,7 @@ yxorproxy.com
 zacebookpk.com
 zalmos.com
 zend2.com
-zendproxy.com# Web proxies listings
+zendproxy.com
 2ub.top
 anonymizer.nntime.com
 free-proxy-list.net
@@ -455,7 +455,7 @@ pxaa.com
 socks-proxy.net
 sslproxies.org
 stupidproxy.com
-vpnme.me# VPNs
+vpnme.me
 12vpx.com
 acevpn.com
 adguard-vpn.com
@@ -595,7 +595,7 @@ zoogvpn.com
 zorrovpn.io
 zpn.im
 geckovpn.xyz
-supervpn.best# VPN listings
+supervpn.best
 bestvpnrating.com
 downloadvpnfree.com
 instantunblock.com
@@ -606,12 +606,12 @@ topvpnguides.com
 vpnfan.com
 vpngorilla.com
 vpnmentor.com
-vpnoverview.com# Web browsers with built-in VPN or proxy
+vpnoverview.com
 epicbrowser.com
 opera.com
 tenta.com
 tor.bravesoftware.com
-ur-browser.com# Tor
+ur-browser.com
 darknet.to
 onion.cab
 onion.city
@@ -623,7 +623,7 @@ onion.sh
 onion.to
 onion.ws
 torproject.org
-geti2p.net# Privacy-oriented linux distros for anonymous browsing
+geti2p.net
 dee.su
 digi77.com
 ipredia.org

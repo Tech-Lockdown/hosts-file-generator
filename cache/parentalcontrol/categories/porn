@@ -367,12 +367,12 @@ xxxpornasian.com
 yamidas.yamiboard.com
 yamigama.com
 yespornplease.com
-# PornAway blacklist
-# D̲i̲r̲e̲c̲t̲ ̲P̲o̲r̲n̲ ̲U̲R̲L̲ ̲F̲i̲l̲e̲ (see line 13, 14)# Get PornAway android app in XDA Developer Forum.
-# Last updated: 3 August, 2018.
-# Licensed under The MIT License.# Number of Unique URLs: 26000 [PORN DOMAINS ONLY]# [̲̅P̲̅][̲̅o̲̅][̲̅r̲̅][̲̅n̲̅][̲̅A̲̅][̲̅w̲̅][̲̅a̲̅][̲̅y̲̅]# Additional source & thanks to: Clefspeare13 (github), Sinfonietta (github).
-# This list is all of  porn SITES. Enabling it will not block porn ads but only the origin sites. 
-# There's a different host file available for verified porn ads/trackers.localhost
+
+
+
+
+
+localhost
 ::1  localhost0azx1.com
 0c47f8422d3f.com
 0cc175b9c0f1b6a831c399e269772661.com
@@ -25300,9 +25300,9 @@ zzbroya.com.ua
 zzhomes.com
 zzqrt.com
 zzsyw.com
-zzztube.com# [BETA] List of porn doamins with multitple IP addresses that serves based on the user agent. # pornlovo.com
-# m.fuckup.xxx
-#xhamster.com (non-mobile + mobile: de, fr, es, it, pl, pt, jp, nl)
+zzztube.com
+
+
 de.m.xhamster.com 
 fr.m.xhamster.com
 es.m.xhamster.com
@@ -25311,8 +25311,8 @@ pl.m.xhamster.com
 pt.m.xhamster.com
 jp.m.xhamster.com
 nl.m.xhamster.com
-#ru.xhamster.com
-ru.m.xhamster.com# List of duplicate (of above) & unique URLs prepended "www", as they may resolve to a different address in certain circumstances (i.e. phone, country).www.0xxx.ws
+
+ru.m.xhamster.comwww.0xxx.ws
 www.00webcams.com
 www.0013langford.tumblr.com
 www.007angels.com
@@ -31539,8 +31539,7 @@ www.ztod.com
 www.zuzandra.com
 www.zzcartoon.com
 www.zzgays.com
-www.zzztube.com# Look up for the porn_ads file for porn-ads only domains.
-# That's all for now.
+www.zzztube.com
 007angels.com
 007milf.com
 00webcams.com
