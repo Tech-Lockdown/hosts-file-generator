@@ -7,12 +7,7 @@
     "test": "jest --watchAll --notify",
     "test-server": "node tests/test.server.js",
     "start": "node app.js",
-    "generate:blocklist": "node cli.js --blocklist parentalcontrol,privacy,security",
-    "generate:cache": "node cli.js --cache parentalcontrol,privacy,security",
-    "get:blocklist": "node cli.js --getblocklist parentalcontrol,privacy,security",
-    "get:options": "node cli.js --options parentalcontrol,privacy,security",
-    "get:cachemap": "node cli.js --getcachemap",
-    "set:cachemap": "node cli.js --setcachemap"
+    "generate:cache": "node cli.js --cache"
   },
   "repository": {
     "type": "git",
