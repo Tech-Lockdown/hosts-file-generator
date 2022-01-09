@@ -13,6 +13,7 @@ var whitelist = [
 	'http://localhost:3000', 
 	'http://localhost:1313', 
 	'http://localhost:8888', 
+	'http://techlockdown.com',
 	'https://techlockdown.com',
 	'https://pmo-dev.netlify.app',
 	'https://pmo-stage.netlify.app',
